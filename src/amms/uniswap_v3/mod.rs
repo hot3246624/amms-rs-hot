@@ -935,7 +935,7 @@ impl UniswapV3Factory {
 
             let mut min_word = tick_to_word(MIN_TICK, uniswap_v3_pool.tick_spacing);
             let max_word = tick_to_word(MAX_TICK, uniswap_v3_pool.tick_spacing);
-            let mut word_range = max_word - min_word;
+            let mut word_range = max_word - min_word + 1;
 
             while word_range > 0 {
                 let remaining_range = max_range - group_range;
@@ -948,7 +948,7 @@ impl UniswapV3Factory {
                 });
 
                 word_range -= range;
-                min_word += range - 1;
+                min_word += range;
                 group_range += range;
 
                 // If group is full, fire it off and reset
